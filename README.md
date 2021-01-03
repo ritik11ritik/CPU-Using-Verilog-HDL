@@ -57,8 +57,11 @@ The following table contains the detailed information of each I type instruction
 |XORI|Bitwise XOR accumulator with immediate number|1110_xxxx_xxxx|Z|
 |SUBIA|Subtract accumulator by immediate number|1111_xxxx_xxxx|Z, C, S, O|
 
-
-
+### S Type Instruction
+The only S type instruction is shown as following
+|Instruction Mnemonics|Function|Encoding (Binary)|Status Affected|
+|:-------------------:|:------:|:---------------:|:-------------:|
+|NOP|No Operation|0000_0000_0000|None|
 
 
 
