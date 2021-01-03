@@ -15,3 +15,24 @@ The instruction encoding is shown in the following table
 |0010_0000_0000 - 0011_1111_1111|200-3FF|ALU instructions (M type)|32|16 instructions, 2 destination choices|
 |0100_0000_0000 - 0111_1111_1111|400-7FF|Conditional jump (I type)|4|JZ,JC,JS,JO|
 |1000_0000_0000 - 1111_1111_1111|800-FFF|ALU instructions (I type)|8|Currently 7 used, 1 free slot|
+
+### M Type Instructions
+The following table contains the detailed information of each M type instruction. Note that “aaaa” encodes the 4 bit address of data memory, and the “d” bit means destination of the result, i.e. if d = 1, result is written to Acc, otherwise the result is written to the same memory location as the operand
+|Instruction Mnemonics|Function|Encoding (Binary)|Status Affected|
+|:-------------------:|:------:|:---------------:|:-------------:|
+|ADD|Add a memory entry with accumulator|001d_0000_aaaa|Z, C, S, O|
+|SUBAM|Subtract accumulator by a memory entry|001d_0001_aaaa|Z, C, S, O|
+|MOVAM|Move the value of accumulator to a memory entry|0010_0010_aaaa|None|
+|MOVMA|Move the value of a memory entry to accumulator|0011_0011_aaaa|None|
+|AND|Bitwise AND a memory entry with accumulator|001d_0100_aaaa|Z|
+|OR|Bitwise OR a memory entry with accumulator|001d_0101_aaaa|Z|
+|XOR|Bitwise XOR a memory entry with accumulator|001d_0110_aaaa|Z|
+|SUBMA|Subtract a memory entry by accumulator|001d_0111_aaaa|Z, C, S, O|
+|INC|Increment a memory entry|0010_1000_aaaa|Z, C, S, O|
+|DEC|Decrement a memory entry|0010_1000_aaaa|Z, C, S, O|
+|ROTATEL|Circulate shift left a memory entry by number of bits specified by accumulator|0010_1010_aaaa|None|
+|ROTATER|Circulate shift right a memory entry by number of bits specified by accumulator|0010_1011_aaaa|None|
+|SLL|Shift a memory entry left (fill 0) by number of bits specified by accumulator|0010_1100_aaaa|Z, C|
+|SRL|Shift a memory entry right (fill 0) by number of bits specified by accumulator|0010_1100_aaaa|Z, C|
+|SRA|shift a memory entry right arithmetically (fill original MSB) by number of bits specified by accumulator|0010_1110_aaaa|Z, C, S|
+|COMP|Take 2's complement of a memory entry|0010_1111_aaaa|Z, C, S, O|
